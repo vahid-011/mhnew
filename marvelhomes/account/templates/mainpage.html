@@ -328,7 +328,7 @@
                         <h2 class="my-5">LATEST NEWS</h2>
                         <div classs="row">
                             {% for news in news_items %}
-                                <div class="col-md-4 my-2 col-sm-6">
+                                <div class="col-md-4 my-2">
                                     <div class="card" style="width: 25rem;">
                                         {% if news.photo %}
                                         <img src="{{ news.photo.url }}"  alt="{{ news.title }}" style="height: 12rem;">

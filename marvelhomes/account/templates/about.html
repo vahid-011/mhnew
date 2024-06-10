@@ -1,0 +1,347 @@
+
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    {% include 'inc/navbar.html' %}
+
+<div class="bg-dark about-bg-image" style="height: 50vh;">
+    <h2 class="about text-light mt-4">Meet Us on Social Media</h2>
+
+    <div class="social-media-links mb-4">
+        <a href="https://www.instagram.com/yourinstagram" target="_blank">
+            <i class="fab fa-instagram fa-2x text-light"></i>
+        </a>
+        <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+            <i class="fab fa-whatsapp fa-2x text-light"></i>
+        </a>
+        <a href="https://www.linkedin.com/yourlinkedin" target="_blank">
+            <i class="fab fa-linkedin fa-2x text-light"></i>
+        </a>
+    </div>
+</div>
+
+<style>
+    .about-bg-image {
+        background-image: url("{% static 'images/aboutbg.png' %}");
+    }
+
+    .social-media-links {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .about {
+        position: absolute;
+        top: 18%;
+        right: 340px; /* Adjust the right value as needed */
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+    .social-media-links a {
+        color: #000;
+        text-decoration: none;
+        margin-top: 160px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        color: #000;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+
+    .social-media-links i {
+        transition: color 0.3s;
+    }
+
+    .social-media-links a:hover i {
+        color: #007bff;
+    }
+
+    .social-media-links a:hover {
+        transform: scale(1.1);
+    }
+
+    @media (max-width: 576px) {
+        .about {
+            right: 240px; /* Adjust the right value as needed */
+        }
+
+        .social-media-links a {
+            margin-top: 80px; /* Adjust the margin-top value as needed */
+        }
+    }
+</style>
+    </div>
+
+<div>
+    <h2 class="aboutus">about us</h2>
+    
+    <h5>Marvel Homes is the First Serviced Real Estate in Dubai , Offering Real Estate advisories which include Sales, Rentals and Re-sale of Apartments, Villas, Townhouses, Mansions and Plots of Land.</h5>
+    <br>
+    <br>
+    <h5 class="b"><b>Our Services are :</b></h5>
+    
+    <ul>
+       
+        <li>Sales Advisory (Buy, Rent, Sale)</li>
+        <li>Property Management</li>
+        <li>Interior Design and Fit out</li>
+        <li>Property Valuation</li>
+      </ul>
+     <br>
+     <br>
+     <br>
+      
+    
+      <h6 class="ceo"><b>CEO</b></h6>
+      <br>
+      <br>
+      <br>
+      <h2>MEET OMID TAHMASEBIAN</h2>
+      <br>
+      <br>
+      <br>
+      <div class="contain">
+      <h5 class="boss"><br>Living in Dubai since 2004 with an academic background of management and marketing,<br> With +10 Years of practical sales experience in Dubai real estate market, my primary goal<br> is to enhance client services andknowledge. I specialize in helping clients to invest on<br> the right property at any cycle of market backed by the market history of the property  and project.</h5>
+      
+</div>
+
+<div class="col-md-4">
+    <img class='bosspic'src="{% static 'images/ceo.png' %}" class="img-fluid rounded-start" alt="...">
+  </div>
+  <style>
+    .bosspic {
+      width: 310px;
+      height: 471px;
+      position: absolute;
+      top: 730px;
+      left: 50px;
+    }
+  </style>
+
+    <style>
+        .ceo{
+            margin-right: 430px;
+        }
+        .contain {
+        display: flex;
+        justify-content: flex-end;
+        }
+
+        .boss {
+        text-align: right;
+        max-height: 84px;
+        /* overflow: hidden; */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        }
+        .boss{
+            color: black;
+            text-align: left;
+            padding-right: 20px;
+            text-indent: -20px;
+        }
+        H6{
+            color: black;
+        }
+        h2{
+            color: black;
+        }
+        .aboutus{
+            text-align: center;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-family: "Jost", sans-serif;
+            margin-top: 20px;
+        }
+        h5{
+            text-align: center;
+        }
+        .b{
+            text-align:left;
+            margin-left: 50px;
+        }
+        ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        /* font-weight: bold; */
+        font-size: 1.2rem;
+        }
+
+        li {
+        margin-bottom: 10px;
+        margin-left: 70px;
+        }
+    </style>
+</div>
+    
+
+
+</body>
+
+</html>
+
+
+
+
+
+  <style>
+    .contact-info {
+      animation: fadeInUp 1.5s;
+      color: #000000;
+    }
+    .contact-info a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      color: #0C0C0C;
+    }
+    /* @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      } */
+    
+  </style> 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <section>
+    <!doctype html>
+<html lang="en">
+
+
+   
+   
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Get in Touch With Us</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <!-- <iframe class="w-100" height="300" frameborder="0" style="border:0"  -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.287673040795!2d55.25967402351932!3d25.18610178563435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6924fed68169%3A0x14ca85eaa077a463!2sMarvel%20Homes%20Real%20Estate!5e0!3m2!1sen!2sae!4v1717592958180!5m2!1sen!2sae" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" style="border: 1px solid"; referrerpolicy="no-referrer-when-downgrade"></iframe> 
+                    <!-- allowfullscreen></iframe> -->
+            </div>
+            <div class="col-md-6">
+              <form id="contactForm">
+                  <div class="mb-3">
+                      <input type="text" class="form-control" rows="4" placeholder="Name" required>
+                  </div>
+                  <div class="mb-3">
+                      <input type="email" class="form-control" rows="4" placeholder="Email" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                      <input type="text" class="form-control" rows="4" placeholder="Phone" required>
+                  </div>
+                  <!-- Increase the rows from 6 to 8 -->
+                  <div class="mb-3">
+                      <textarea class="form-control" rows="6" placeholder="Message" required></textarea>
+                  </div>
+                  <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="terms" required>
+                      <label class="form-check-label" for="terms">I consent to having this website store my submitted information</label>
+                  </div>
+                  <button type="submit" class="btn btn-dark w-100">Submit</button>
+              </form>
+          </div>
+          <style>
+            .btn {
+              height: 50px; /* Adjust the height as needed */
+            }
+          </style>
+          <!-- <style>
+          .form-control {
+            height: 50px; /* Adjust the height as needed */
+        }
+          
+      </style> -->
+          
+        </div>
+
+       
+        <div class="container mt-5">
+          <div class="contact-info d-flex flex-column align-items-start">
+            <div class="mb-3">
+              <i class="fas fa-map-marker-alt"></i>
+              <a href="https://www.google.com/maps/uv?pb=!1s0x3e5f6924fed68169%3A0x14ca85eaa077a463!3m1!7e115!4s%2Fmaps%2Fplace%2Fmarvel%2Bhomes%2F%4025.1858277%2C55.2625787%2C3a%2C75y%2C296.68h%2C90t%2Fdata%3D*213m4*211e1*213m2*211s-TjIFrsfljsj9mfldQLJSg*212e0*214m2*213m1*211s0x3e5f6924fed68169%3A0x14ca85eaa077a463%3Fsa%3DX%26ved%3D2ahUKEwiV3Z6ut4WCAxXYo_0HHaVVA20Qpx96BAg0EAA!5smarvel%20homes%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2s-TjIFrsfljsj9mfldQLJSg&hl=en&sa=X&ved=2ahUKEwiV3Z6ut4WCAxXYo_0HHaVVA20Qpx96BAhOEA0" target="_blank">
+                Ontario Tower Business Bay Shop Number 1, Office 8 - Dubai
+              </a>
+            </div>
+            <div class="mb-3">
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://api.whatsapp.com/send/?phone=971502513325&text&type=phone_number&app_absent=0" target="_blank">
+                +971502513325
+              </a>
+            </div>
+            <div class="mb-3">
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/marvelhomes_/" target="_blank">
+                marvelhomes_
+              </a>
+            </div>
+            <div class="mb-3">
+              <i class="fas fa-mail-bulk"></i>
+              <a href="mailto:inquiry@marvelhomes.ae">
+                inquiry@marvelhomes.ae
+              </a>
+            </div>
+          </div>
+        </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+
+
+  </section>
+</body>
+</html>
+
+
+{% include 'inc/footer.html' %}

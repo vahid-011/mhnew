@@ -1,0 +1,29 @@
+<!-- {% extend 'mainpage.html' %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            {% if news_list %}
+                {% for news in news_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            {% if news.photo %}
+                            <img src="{{ news.photo.url }}" class="card-img-top" alt="{{ news.title }}">
+                            {% endif %}
+                            <p class="card-text">{{ news.description }}</p>
+                            <p class="card-text">Updated: {{ news.updated_date }} {{ news.updated_time }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>No news items found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content%} -->

@@ -4,6 +4,14 @@ from django.views.generic import CreateView,FormView,TemplateView
 from django.views import View
 from .models import News
 
+def detail_news(request,id):
+    news = News.objects.get(id=id)
+    return render(request,'detail_news.html',{"news":news})
+
+def all_news(request):
+    news = News.objects.all()
+    return render(request,'news_list.html',{"news_list":news})
+
 
 def mainpage(request):
     news_list=News.objects.all().order_by('-updated_date')[:6]

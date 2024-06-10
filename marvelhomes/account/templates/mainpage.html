@@ -326,7 +326,7 @@
                 <section class="latest_news">
                     <div class="container">
                         <h2 class="my-5">LATEST NEWS</h2>
-                        <div classs="row">
+                        <div class="row">
                             {% for news in news_items %}
                                 <div class="col-md-4 my-2">
                                     <div class="card" style="width: 25rem;">
@@ -337,12 +337,14 @@
                                             <h5 class="card-title">{{ news.title }}</h5>
                                             <p class="card-text">{{ news.description }}</p>
                                             <p>Updated on: {{ news.updated_date }} at {{ news.updated_time }}</p>
-                                            <a href="#" class="text-decoration-none text-dark"><p class="fw-bold">continue reading</p></a>
+                                            <a href="{% url 'detail_news' news.id %}" class="text-decoration-none text-dark"><p class="fw-bold">continue reading</p></a>
                                         </div>
                                     </div>
                                 </div>
                                 {% endfor %}
-                        </div>
+                            </div>
+
+                            <a class="btn btn-outline-dark mx-auto" href="{% url 'news' %}">View all</a>
                     </div>
                 </section>
                 

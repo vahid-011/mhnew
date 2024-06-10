@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from .views import about,listing,news_list,home,forsellers
+from .views import about,listing,news_list,home,forsellers,detail_news,all_news
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -13,6 +13,8 @@ urlpatterns = [
     path('home/',home.as_view(), name='home'),
     path('',listing.as_view(),name='listing'),
      path('news/',news_list, name='news_list'),
+     path('newslist/',all_news, name='news'),
+     path('news/<int:id>',detail_news, name='detail_news'),
     # path('news/<str:category>',views.news_list, name='news_list'),
     
 

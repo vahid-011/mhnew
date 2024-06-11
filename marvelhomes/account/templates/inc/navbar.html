@@ -486,16 +486,16 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">HOME</a>
+                        <a class="nav-link" href="{% url '' %}">HOME</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProperties" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             PROPERTIES
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProperties">
-                            <li><a class="dropdown-item" href="#">APARTMENTS</a></li>
-                            <li><a class="dropdown-item" href="#">VILLAS</a></li>
-                            <li><a class="dropdown-item" href="#">TOWNHOUSES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category_property' 'apartments' %}">APARTMENTS</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category_property' 'villas' %}">VILLAS</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category_property' 'townhouses' %}">TOWNHOUSES</a></li>
                             <li><a class="dropdown-item" href="#">SEE ALL THE PROPERTIES</a></li>
                         </ul>
                     </li>

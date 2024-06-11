@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from .views import about,listing,news_list,home,forsellers,detail_news,all_news
+from .views import about,listing,news_list,home,forsellers,detail_news,all_news,Category
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -15,6 +15,7 @@ urlpatterns = [
      path('news/',news_list, name='news_list'),
      path('newslist/',all_news, name='news'),
      path('news/<int:id>',detail_news, name='detail_news'),
+     path('property/<category>',Category.as_view(), name='category_property'),
     # path('news/<str:category>',views.news_list, name='news_list'),
     
 

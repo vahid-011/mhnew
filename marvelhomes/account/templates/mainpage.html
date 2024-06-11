@@ -105,136 +105,49 @@
         </section> 
     
         <!-- Books section -->
-         <section>
+         {% comment %} <section>
           
-        </section>
+         </section> {% endcomment %}
     
     
 
       
           <section class="home"> 
-
-
-
-
-
-
                  <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="card mb-4">
-                                <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
-                                <div class="card-body">
-                                    <p class="card-text">APARTMENTS</p>
-                                    <h3 class="card-title">Sama Ezdan<br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                                  
-                                    <div class="d-flex justify-content-between button-gap mt-1">
-                                        <a href="#" class="btn btn-dark">Card link</a>
-                                        <a href="#" class="btn btn-dark">Another link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <!-- Add two more similar card divs for the other two cards in the first row -->
-        
-                        <div class="col-lg-4 col-md-6">
-                            <div class="card mb-4">
-                                <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
-                                <div class="card-body">
-                                    <p class="card-text">APARTMENTS</p>
-                                    <h3 class="card-title">Sama Ezdan<br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                                   
-                                    <div class="d-flex justify-content-between button-gap mt-1">
-                                        <a href="#" class="btn btn-dark">Card link</a>
-                                        <a href="#" class="btn btn-dark">Another link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <!-- Add two more similar card divs for the other two cards in the first row -->
-        
-                         <div class="col-lg-4 col-md-6">
-                            <div class="card mb-4">
-                                <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
-                                <div class="card-body">
-                                    <p class="card-text">APARTMENTS</p>
-                                    <h3 class="card-title">Sama Ezdan<br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                                  
-                                    <div class="d-flex justify-content-between button-gap mt-1">
-                                        <a href="#" class="btn btn-dark">Card link</a>
-                                        <a href="#" class="btn btn-dark">Another link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-        
-                     <!-- Add two more similar card divs for the other two cards in the first row -->
-                    </div>
-                </div>
-            
-        
-        </section>
-        <section>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
+                       {% for apartment in apartments %}
+                       <div class="col-lg-4 col-md-6">
                         <div class="card mb-4">
-                            <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
+                            {% if apartment.is_off_plan %}
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                                OFF PLAN
+                            </div>
+                            {% endif %}
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                {{apartment.payment_plan}} PAYMENT PLAN
+                            </div>
+                            <img src="{{apartment.image.url}}" class="card-img-top" alt="Logo">
                             <div class="card-body">
-                                <p class="card-text">APARTMENTS</p>
-                                <h3 class="card-title">Sama Ezdan<br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                               
+                                <p class="card-text">apartment
+                                    {% if apartment.type %}
+                                        {{apartment.type}}
+                                    {% endif %}
+                                </p>
+                                <p class="card-text fw-bold">{{apartment.company}}</p>
+                                <h3 class="card-text">{{apartment.title}}</h3>
+                                <h3 class="card-text">STARTING PRICE AED {{apartment.price}}</h3>
+                              
                                 <div class="d-flex justify-content-between button-gap mt-1">
-                                    <a href="#" class="btn btn-dark">Card link</a>
-                                    <a href="#" class="btn btn-dark">Another link</a>
+                                    <a href="#" class="btn btn-dark">Call</a>
+                                    <a href="#" class="btn btn-dark">Whatsapp</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
-                     <!-- Add two more similar card divs for the other two cards in the first row --> 
-    
-                     <div class="col-lg-4 col-md-6">
-                        <div class="card mb-4">
-                            <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
-                            <div class="card-body">
-                                <p class="card-text">APARTMENTS</p>
-                                <h3 class="card-title">Sama Ezdan<br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                                
-                                <div class="d-flex justify-content-between button-gap mt-1">
-                                    <a href="#" class="btn btn-dark">Card link</a>
-                                    <a href="#" class="btn btn-dark">Another link</a>
-                                </div>
-                            </div>
-                        </div>
+                       {% endfor %}
                     </div>
-    
-                    <!-- Add two more similar card divs for the other two cards in the first row -->
-    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card mb-4">
-                            <img src="{% static 'images/samaezdan.jpg' %}" class="card-img-top" alt="Logo">
-                            <div class="card-body">
-                                <p class="card-text">APARTMENTS</p>
-                                <h3 class="card-title"><b>Sama Ezdan</b><br>SEA VIEW RESIDENCE<br>STARTING PRICE AED 1,634,834</h3>
-                               
-                                <div class="d-flex justify-content-between button-gap mt-1 ">
-                                    <a href="#" class="btn btn-dark custom-gap">Card link</a><br>
-                                    <a href="#" class="btn btn-dark">Another link</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    
-    
-                    <!-- Add two more similar card divs for the other two cards in the first row -->
-                 </div>
-            </div> 
-
-            
-        </section>
+                </div>  
+          </section>
             <br>
             <br>
             <br>
@@ -330,12 +243,14 @@
                             {% for news in news_items %}
                                 <div class="col-md-4 my-2">
                                     <div class="card" style="width: 25rem;">
+                                       <a href="{% url "detail_news" news.id %}">
                                         {% if news.photo %}
-                                        <img src="{{ news.photo.url }}"  alt="{{ news.title }}" style="height: 12rem;">
+                                        <img src="{{ news.photo.url }}" class="card-img-top"  alt="{{ news.title }}" style="height: 12rem;">
                                         {% endif %}
+                                       </a>
                                         <div class="card-body">
                                             <h5 class="card-title">{{ news.title }}</h5>
-                                            <p class="card-text">{{ news.description }}</p>
+                                            <p class="card-text">{{ news.description | slice:'0:100' }}</p>
                                             <p>Updated on: {{ news.updated_date }} at {{ news.updated_time }}</p>
                                             <a href="{% url 'detail_news' news.id %}" class="text-decoration-none text-dark"><p class="fw-bold">continue reading</p></a>
                                         </div>

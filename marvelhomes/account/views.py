@@ -2,7 +2,17 @@ from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
-from .models import News
+from .models import News,Properties
+from django.views.generic import ListView
+
+
+class Category(ListView):
+    template_name='category_property.html'
+    queryset=Properties.objects.all()
+    context_object_name='property'
+    def get_context_data(self, **kwargs):
+        res = Properties.objects.filter(category=self.kwargs.get('category')) 
+        return {'property':res}
 
 def detail_news(request,id):
     news = News.objects.get(id=id)
@@ -14,8 +24,9 @@ def all_news(request):
 
 
 def mainpage(request):
+    apartments = Properties.objects.filter(category='apartments')
     news_list=News.objects.all().order_by('-updated_date')[:6]
-    return render(request, 'mainpage.html',{'news_items':news_list})
+    return render(request, 'mainpage.html',{'news_items':news_list,'apartments':apartments})
 
 
 

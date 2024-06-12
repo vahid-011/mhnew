@@ -1,9 +1,18 @@
+from typing import Any
 from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
 from .models import News,Properties
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
+
+class PropertyDetails(DetailView):
+    template_name='property_details.html'
+    queryset = Properties.objects.all()
+    pk_url_kwarg='pid'
+    context_object_name='property'
+    
+    
 
 
 class Category(ListView):

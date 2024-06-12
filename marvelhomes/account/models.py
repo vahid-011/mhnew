@@ -33,11 +33,11 @@ class Properties(models.Model):
         return self.title
     
 class PropertyDetails(models.Model):
-    property = models.OneToOneField(Properties,on_delete=models.CASCADE,null=True)
+    property = models.OneToOneField(Properties,on_delete=models.CASCADE,null=True,related_name='detail')
     location = models.CharField(max_length=200,null=True)
     project_name = models.CharField(max_length=200,null=True)
     developer = models.CharField(max_length=200,null=True)
-    completion_date= models.DateField(null=True)
+    completion_date= models.CharField(max_length=100,null=True)
 
     def __str__(self) -> str:
          return self.property.title

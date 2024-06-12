@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Property Details</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                    <h3>{{property.title}}</h3>
+                    <div class="d-flex justify-content-evenly">
+                        <p>Featured</p>
+                        {% if property.is_off_plan %}
+                        <p><span class="badge bg-secondary">OFF PLAN</span></p>
+                        {% endif %}
+                        <p><span class="badge bg-secondary">{{property.payment_plan}} PAYMENT PLAN</span></p>
+                    </div>
+                </div>
+                <h3 class="fw-bold">{{property.company}}</h3>
+            </div>
+            <img src="{{property.image.url}}" alt="" class="img-fluid">
+
+            <div class="border border-3 w-50 mt-3 p-4" style="height: 10rem;">
+                <h3>Overview</h3>
+                <div class="d-flex">
+                    <div class="d-flex flex-column me-5">
+                        <p class="fw-bold">AED {{property.price}}</p>
+                        <p>starting price</p>
+                    </div>
+
+                    <div class="d-flex flex-column me-5">
+                        <p class="fw-bold">{{property.payment_plan}}</p>
+                        <p>payment plan</p>
+                    </div>
+
+                   {% if property.detail %}
+                   <div class="d-flex flex-column">
+                    <p class="fw-bold">{{property.detail.completion_date}}</p>
+                    <p>completion date</p>
+                   </div>
+                   {% endif %}
+                </div>
+            </div>
+            
+           <!-- Description -->
+            <div class="border border-3 w-50 mt-3 p-4">
+                <h3>Description</h3>
+                {{property.description}}
+
+            </div>
+
+           <!-- Details -->
+           {% if property.detail %}
+           <div class="border border-3 w-50 mt-3 p-4">
+            <h3>Details</h3>
+            <div class="border border-3 bg-secondary">
+                <div class="row">
+                    <div class="col-3">
+                        <p class="fw-bold">Location:</p>
+                        <p class="fw-bold">Project Name:</p>
+                        <p class="fw-bold">Developer:</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{property.detail.location}}</p>
+                        <p>{{property.detail.project_name}}</p>
+                        <p>{{property.detail.developer}}</p>
+                    </div>
+
+                    <div class="col-3">
+                        <p class="fw-bold">Unit type:</p>
+                        <p class="fw-bold">Completion date:</p>
+                        <p class="fw-bold">Starting Price:</p>
+                    </div>
+
+                    <div class="col-3">
+                        <p>{{property.category}}, {{property.type}}</p>
+                        <p>{{property.detail.completion_date}}</p>
+                        <p>AED {{property.price}}</p>
+                    </div>
+                </div>
+            </div>
+
+           </div>
+            
+           {% endif %}
+
+        </div>
+
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

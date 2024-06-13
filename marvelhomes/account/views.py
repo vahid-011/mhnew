@@ -3,17 +3,25 @@ from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
-from .models import News,Properties
+from .models import News,Properties,Location
 from django.views.generic import ListView,DetailView
 
+
+class AllProperty(TemplateView):
+    template_name='all_property.html'
+    
 class PropertyDetails(DetailView):
     template_name='property_details.html'
     queryset = Properties.objects.all()
     pk_url_kwarg='pid'
     context_object_name='property'
-    
-    
 
+class PlaceView(View):
+    def get(self,request,place):
+        loc = Location.objects.get(place=place)
+        properties = Properties.objects.filter(location=loc)
+        place_of_location = Location.objects.get(place = place)
+        return render(request,'place.html',{'property':properties,'place':place_of_location})
 
 class Category(ListView):
     template_name='category_property.html'

@@ -20,22 +20,175 @@
 
     <body>
         
-        <div class="container">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <div class="container mt-5">
+            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">All</button>
+                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">APARTMENTS</button>
+                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#apartment" type="button" role="tab" aria-controls="apartment" aria-selected="false">APARTMENTS</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">VILLAS</button>
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#villa" type="button" role="tab" aria-controls="villa" aria-selected="false">VILLAS</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#townhouses" type="button" role="tab" aria-controls="townhouses" aria-selected="false">TOWNHOUSES</button>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                  <div class="row justify-content-center">
+                    {% for prop in property %}
+                    <div class="col-lg-4 col-md-6">
+                     <div class="card mb-4">
+                         {% if prop.is_off_plan %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                             OFF PLAN
+                         </div>
+                         {% endif %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                             {{prop.payment_plan}} PAYMENT PLAN
+                         </div>
+                         <a href="{% url 'property_detail' prop.id %}">
+                          <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                         </a>
+                         <div class="card-body">
+                             <p class="card-text">
+                               {{prop.category}}
+                                 {% if prop.type %}
+                                     {{prop.type}}
+                                 {% endif %}
+                             </p>
+                             <p class="card-text fw-bold">{{prop.company}}</p>
+                             <h3 class="card-text">{{prop.title}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                           
+                             <div class="d-flex justify-content-between button-gap mt-1">
+                                 <a href="#" class="btn btn-dark">Call</a>
+                                 <a href="#" class="btn btn-dark">Whatsapp</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                    {% endfor %}
+                 </div>
+
+                </div>
+                <div class="tab-pane fade" id="apartment" role="tabpanel" aria-labelledby="apartment-tab">
+                  <!-- apartments -->
+                  <div class="row justify-content-center">
+                    {% for prop in apartment %}
+                    <div class="col-lg-4 col-md-6">
+                     <div class="card mb-4">
+                         {% if prop.is_off_plan %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                             OFF PLAN
+                         </div>
+                         {% endif %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                             {{prop.payment_plan}} PAYMENT PLAN
+                         </div>
+                         <a href="{% url 'property_detail' prop.id %}">
+                          <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                         </a>
+                         <div class="card-body">
+                             <p class="card-text">
+                               {{prop.category}}
+                                 {% if prop.type %}
+                                     {{prop.type}}
+                                 {% endif %}
+                             </p>
+                             <p class="card-text fw-bold">{{prop.company}}</p>
+                             <h3 class="card-text">{{prop.title}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                           
+                             <div class="d-flex justify-content-between button-gap mt-1">
+                                 <a href="#" class="btn btn-dark">Call</a>
+                                 <a href="#" class="btn btn-dark">Whatsapp</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                    {% endfor %}
+                 </div>
+
+
+                </div>
+                <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
+                  <div class="row justify-content-center">
+                    {% for prop in villas %}
+                    <div class="col-lg-4 col-md-6">
+                     <div class="card mb-4">
+                         {% if prop.is_off_plan %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                             OFF PLAN
+                         </div>
+                         {% endif %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                             {{prop.payment_plan}} PAYMENT PLAN
+                         </div>
+                         <a href="{% url 'property_detail' prop.id %}">
+                          <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                         </a>
+                         <div class="card-body">
+                             <p class="card-text">
+                               {{prop.category}}
+                                 {% if prop.type %}
+                                     {{prop.type}}
+                                 {% endif %}
+                             </p>
+                             <p class="card-text fw-bold">{{prop.company}}</p>
+                             <h3 class="card-text">{{prop.title}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                           
+                             <div class="d-flex justify-content-between button-gap mt-1">
+                                 <a href="#" class="btn btn-dark">Call</a>
+                                 <a href="#" class="btn btn-dark">Whatsapp</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                    {% endfor %}
+                 </div>
+                <div class="tab-pane fade" id="townhouses" role="tabpanel" aria-labelledby="villa-townhouses">
+                  <div class="row justify-content-center">
+                    {% for prop in villas %}
+                    <div class="col-lg-4 col-md-6">
+                     <div class="card mb-4">
+                         {% if prop.is_off_plan %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                             OFF PLAN
+                         </div>
+                         {% endif %}
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                             {{prop.payment_plan}} PAYMENT PLAN
+                         </div>
+                         <a href="{% url 'property_detail' prop.id %}">
+                          <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                         </a>
+                         <div class="card-body">
+                             <p class="card-text">
+                               {{prop.category}}
+                                 {% if prop.type %}
+                                     {{prop.type}}
+                                 {% endif %}
+                             </p>
+                             <p class="card-text fw-bold">{{prop.company}}</p>
+                             <h3 class="card-text">{{prop.title}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                           
+                             <div class="d-flex justify-content-between button-gap mt-1">
+                                 <a href="#" class="btn btn-dark">Call</a>
+                                 <a href="#" class="btn btn-dark">Whatsapp</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                    {% endfor %}
+                 </div>
+
+
+                </div>
               </div>
         </div>
 

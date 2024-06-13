@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+    {% load static %}
     <head>
         <title>Property Details</title>
         <!-- Required meta tags -->
@@ -16,6 +17,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
     <body>
@@ -68,7 +70,7 @@
            {% if property.detail %}
            <div class="border border-3 w-75 mt-3 p-4">
             <h3>Details</h3>
-            <div class="border border-3 bg-secondary">
+            <div class="border border-3 bg-secondary p-3">
                 <div class="row">
                     <div class="col-3">
                         <p class="fw-bold">Location:</p>
@@ -133,7 +135,34 @@
            </div>
            {% endif %}
 
+           <div class="border border-3 w-75 my-3 p-4">
+            <div class="d-flex justify-content-between">
+                <h3>Contact information</h3>
+                <button class="btn btn-dark">View listings</button>
+            </div>
+            <div class="d-flex">
+                <img src="{% static 'images/mainlogo.png' %}" alt="" style="" class="img-fluid mx-5">
+                <div class="py-5">
+                    <p class="my-1">
+                        <i class="fa-regular fa-user"></i>
+                        Marvel home
+                    </p>
+                    <div class="d-flex">
+                        <p class="me-3"> 
+                            <i class="fa-solid fa-phone"></i>
+                            +91 912312312
+                        </p>
+                        <p>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            Whatsapp
+                        </p>
+                    </div>
+                </div>
+            </div>
+           </div>
+
         </div>
+        {% include "inc/footer.html" %}
 
 
         <script

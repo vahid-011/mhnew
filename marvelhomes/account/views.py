@@ -7,14 +7,24 @@ from .models import News,Properties,Location
 from django.views.generic import ListView,DetailView
 
 
-class AllProperty(TemplateView):
+class AllProperty(ListView):
     template_name='all_property.html'
+    queryset = Properties.objects.all()
+    context_object_name='property'
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["apartment"] = self.queryset.filter(category='apartments')
+        context["villas"] = self.queryset.filter(category='villas')
+        context["townhouses"] = self.queryset.filter(category='townhouses')
+        return context
+    
     
 class PropertyDetails(DetailView):
     template_name='property_details.html'
     queryset = Properties.objects.all()
     pk_url_kwarg='pid'
     context_object_name='property'
+    
 
 class PlaceView(View):
     def get(self,request,place):

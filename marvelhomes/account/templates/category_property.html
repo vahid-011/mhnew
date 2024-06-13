@@ -19,6 +19,14 @@
     </head>
     <section class="home"> 
         <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url '' %}" style="text-decoration: none; color: #000;">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="" style="text-decoration: none; color: #000;">{{property.0.category}}</a>
+                  </li>
+                </ol>
+              </nav>
            <div class="row justify-content-center">
               {% for prop in property %}
               <div class="col-lg-4 col-md-6">

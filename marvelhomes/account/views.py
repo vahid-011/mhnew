@@ -51,7 +51,7 @@ def all_news(request):
 
 
 def mainpage(request):
-    apartments = Properties.objects.filter(category='apartments')
+    apartments = Properties.objects.all().order_by('-created_at')[:6]
     news_list=News.objects.all().order_by('-updated_date')[:6]
     return render(request, 'mainpage.html',{'news_items':news_list,'apartments':apartments})
 

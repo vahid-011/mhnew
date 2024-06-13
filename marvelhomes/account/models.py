@@ -23,7 +23,7 @@ class Location(models.Model):
 
 class Properties(models.Model):
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=800)
+    description = models.CharField(max_length=30000)
     price = models.IntegerField()
     place = models.CharField(max_length=200)
     image = models.ImageField(upload_to='property_images')
@@ -42,8 +42,9 @@ class Properties(models.Model):
     payment_plan = models.CharField(max_length=100)
     category = models.CharField(max_length=100,choices = options)
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
-    map = models.CharField(max_length=500,null=True)
-    video = models.CharField(max_length=500,null=True)
+    map = models.URLField(null=True)
+    video = models.URLField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self) -> str:
         return self.title
 

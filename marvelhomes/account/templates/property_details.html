@@ -22,6 +22,17 @@
 
     <body>
         <div class="container mt-5">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url '' %}" style="text-decoration: none; color: #000;">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url "category_property" property.category %}" style="text-decoration: none; color: #000;">{{property.category}}</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="" style="text-decoration: none; color: #000;">{{property.title}}</a>
+                </li>
+                </ol>
+              </nav>
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column">
                     <h3>{{property.title}}</h3>
@@ -33,7 +44,24 @@
                         <p><span class="badge bg-secondary">{{property.payment_plan}} PAYMENT PLAN</span></p>
                     </div>
                 </div>
-                <h3 class="fw-bold">{{property.company}}</h3>
+
+                <div class="d-flex flex-column align-items-end">
+                    <!-- Default dropstart button -->
+                    <div class="btn-group dropstart w-25">
+                        <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                           <li><a class="dropdown-item" href="#">Whatsapp</a></li>
+                           <li><a class="dropdown-item" href="#">Meta</a></li>
+                           <li><a class="dropdown-item" href="#">Twitter</a></li>
+                           <li><a class="dropdown-item" href="#">Pinterest</a></li>
+                           <li><a class="dropdown-item" href="#">Linkedin</a></li>
+                           <li><a class="dropdown-item" href="#">Email</a></li>
+                        </ul>
+                    </div>
+                    <h3 class="fw-bold">{{property.company}}</h3>
+                </div>
             </div>
             <img src="{{property.image.url}}" alt="" class="img-fluid">
 

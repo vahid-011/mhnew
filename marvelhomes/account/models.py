@@ -20,10 +20,9 @@ class Location(models.Model):
     def __str__(self) -> str:
          return self.place
 
-
 class Properties(models.Model):
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=30000)
+    description = models.TextField(max_length=30000)
     price = models.IntegerField()
     place = models.CharField(max_length=200)
     image = models.ImageField(upload_to='property_images')
@@ -47,6 +46,22 @@ class Properties(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self) -> str:
         return self.title
+
+class Image(models.Model):
+     image = models.ImageField(upload_to='media/property_images',null=True)
+     property = models.ForeignKey(Properties,on_delete=models.CASCADE,related_name='all_image',null=True)
+     created_at = models.DateTimeField(auto_now_add=True,null=True)
+     def __str__(self) -> str:
+          return self.property.title
+
+#Create a Payment details when Property is created
+def create_image(sender, instance, created, **kwargs):
+	if created:
+		image = Image(property=instance)
+		image.save()
+
+# # Automate 
+post_save.connect(create_image, sender=Properties)
 
 class PaymentDetails(models.Model):
     on_booking = models.CharField(max_length=100,null=True)

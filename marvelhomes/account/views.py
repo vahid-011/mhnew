@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
-from .models import News,Properties,Location
+from .models import News,Properties,Location,Image
 from django.views.generic import ListView,DetailView
 
 
@@ -24,6 +24,12 @@ class PropertyDetails(DetailView):
     queryset = Properties.objects.all()
     pk_url_kwarg='pid'
     context_object_name='property'
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context =  super().get_context_data(**kwargs)
+        property = Properties.objects.get(id=self.kwargs.get('pid'))
+        image = Image.objects.filter(property = property)
+        context['image'] = image
+        return context
     
 
 class PlaceView(View):
@@ -51,9 +57,9 @@ def all_news(request):
 
 
 def mainpage(request):
-    apartments = Properties.objects.all().order_by('-created_at')[:6]
+    properties = Properties.objects.all().order_by('-created_at')[:6]
     news_list=News.objects.all().order_by('-updated_date')[:6]
-    return render(request, 'mainpage.html',{'news_items':news_list,'apartments':apartments})
+    return render(request, 'mainpage.html',{'news_items':news_list,'properties':properties})
 
 
 

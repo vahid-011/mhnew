@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+    {% load humanize %}
     <head>
         <title>All_property</title>
         <!-- Required meta tags -->
@@ -19,7 +20,7 @@
     </head>
 
     <body>
-        
+        {% include 'inc/nav.html' %}
         <div class="container mt-5">
             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -61,7 +62,7 @@
                              </p>
                              <p class="card-text fw-bold">{{prop.company}}</p>
                              <h3 class="card-text">{{prop.title}}</h3>
-                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
                            
                              <div class="d-flex justify-content-between button-gap mt-1">
                                  <a href="#" class="btn btn-dark">Call</a>
@@ -100,7 +101,7 @@
                              </p>
                              <p class="card-text fw-bold">{{prop.company}}</p>
                              <h3 class="card-text">{{prop.title}}</h3>
-                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
                            
                              <div class="d-flex justify-content-between button-gap mt-1">
                                  <a href="#" class="btn btn-dark">Call</a>
@@ -139,7 +140,7 @@
                              </p>
                              <p class="card-text fw-bold">{{prop.company}}</p>
                              <h3 class="card-text">{{prop.title}}</h3>
-                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price |intcomma}}</h3>
                            
                              <div class="d-flex justify-content-between button-gap mt-1">
                                  <a href="#" class="btn btn-dark">Call</a>
@@ -175,7 +176,7 @@
                              </p>
                              <p class="card-text fw-bold">{{prop.company}}</p>
                              <h3 class="card-text">{{prop.title}}</h3>
-                             <h3 class="card-text">STARTING PRICE AED {{prop.price}}</h3>
+                             <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
                            
                              <div class="d-flex justify-content-between button-gap mt-1">
                                  <a href="#" class="btn btn-dark">Call</a>

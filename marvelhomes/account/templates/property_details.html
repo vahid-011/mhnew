@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     {% load static %}
+    {% load humanize %}
     <head>
         <title>Property Details</title>
         <!-- Required meta tags -->
@@ -21,6 +22,7 @@
     </head>
 
     <body>
+        {% include "inc/nav.html" %}
         <div class="container mt-5">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -64,12 +66,20 @@
                 </div>
             </div>
             <img src="{{property.image.url}}" alt="" class="img-fluid">
+            
+            {% if image %}
+            <div class="d-flex justify-content-evenly" style="height: 10rem;">
+                {% for im in image %}
+                <img src="{{im.image.url}}" alt="" class="img-fluid">
+                {% endfor %}
+            </div>
+            {% endif %}
 
             <div class="border border-3 w-75 mt-3 p-4" style="height: 10rem;">
                 <h3>Overview</h3>
                 <div class="d-flex">
                     <div class="d-flex flex-column me-5">
-                        <p class="fw-bold">AED {{property.price}}</p>
+                        <p class="fw-bold">AED {{property.price | intcomma}}</p>
                         <p>starting price</p>
                     </div>
 
@@ -120,7 +130,7 @@
                     <div class="col-3">
                         <p>{{property.category}}, {{property.type}}</p>
                         <p>{{property.detail.completion_date}}</p>
-                        <p>AED {{property.price}}</p>
+                        <p>AED {{property.price | intcomma}}</p>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 
 {% load static %}
 <!doctype html>
+{% load humanize %}
 <html lang="en">
     <head>
         
@@ -58,6 +59,58 @@
         }
         /* Add more adjustments as needed */
     }
+    .up_arrow{
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        height: 2.8rem;
+        width: 2.8rem;
+        background-color: #000;
+        display: grid;
+        place-content: center;
+    }
+    .up_arrow i {
+        color: white;
+    }
+    .contact_icon{
+        position: fixed;
+        left: 2rem;
+        bottom: 2rem;
+        height: 3rem;
+        width: 3rem;
+        background-color: #000;
+        display: grid;
+        place-content: center;
+        border-radius: 50%;
+        z-index: 1000;
+    }
+    .contact_icon i {
+        color: white;
+    }
+    .msg1 {
+        position: fixed;
+        z-index: 10000;
+        left: 5.2rem;
+        bottom: 2rem;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 12px;
+        background-color: white;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .page-link{
+        border: 0px;
+        background-color: #f2f2f2;
+        color: #000;
+      }
+      .pagination .active .page-link{
+        background-color: #000;
+      }
+      .call,.wp{
+        padding-inline: auto;
+      }
         </style>
 
         {% include 'inc/navbar.html' %} 
@@ -70,7 +123,7 @@
 
  
         
-        <div class="full-bg-image">
+        <div class="full-bg-image" id="start">
             <div>
                 <h6>WELCOME TO</h6>
                 <h1>MARVEL HOMES</h1>
@@ -79,7 +132,7 @@
                
 
                 <div class="listing-box">
-                    <a href="{% url 'listing' %}" class="listing-tag">VIEW ALL LISTINGS</a> 
+                    <a href="{% url 'all_property' %}" class="listing-tag">VIEW ALL LISTINGS</a> 
                  </div>
             </div>
         </div>
@@ -113,42 +166,72 @@
 
       
           <section class="home"> 
-                 <div class="container">
-                    <div class="row justify-content-center">
-                       {% for apartment in apartments %}
-                       <div class="col-lg-4 col-md-6">
-                        <div class="card mb-4">
-                            {% if apartment.is_off_plan %}
+                 <div class="container w-75">
+                    <div class="row gx-4 gx-lg-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                       {% for prop in properties %}
+                       <div class="col mb-5">
+                        <div class="card h-100 mb-4">
+                            {% if prop.is_off_plan %}
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
                                 OFF PLAN
                             </div>
                             {% endif %}
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                                {{apartment.payment_plan}} PAYMENT PLAN
+                                {{prop.payment_plan}} PAYMENT PLAN
                             </div>
-                            <a href="{% url 'property_detail' apartment.id %}">
-                                <img src="{{apartment.image.url}}" class="card-img-top" alt="Logo">
+                            <a href="{% url 'property_detail' prop.id %}">
+                                <img src="{{prop.image.url}}" class="card-img-top" alt="Logo" height="200px">
                             </a>
                             <div class="card-body">
-                                <p class="card-text">apartment
-                                    {% if apartment.type %}
-                                        {{apartment.type}}
+                                <p class="card-text mb-1">{{prop.category}}
+                                    {% if prop.type %}
+                                        {{prop.type }}
                                     {% endif %}
                                 </p>
-                                <p class="card-text fw-bold">{{apartment.company}}</p>
-                                <h3 class="card-text">{{apartment.title}}</h3>
-                                <h3 class="card-text">STARTING PRICE AED {{apartment.price}}</h3>
-                              
-                                <div class="d-flex justify-content-between button-gap mt-1">
-                                    <a href="#" class="btn btn-dark">Call</a>
-                                    <a href="#" class="btn btn-dark">Whatsapp</a>
-                                </div>
+                                <p class="card-text fw-bold">{{prop.company}}</p>
+                                <p class="card-text mb-2">{{prop.title}}</p>
+                                <p class="card-text lead fw-bold">STARTING PRICE AED {{prop.price | intcomma}}</p>
+                    
+                            </div>
+                            <div class="d-flex justify-content-between button-gap mt-1 card-footer">
+                                <a href="#" class="btn btn-dark call px-5">
+                                    <i class="fa-solid fa-phone-volume pe-3"></i>
+                                    Call
+                                </a>
+                                <a href="#" class="btn btn-dark wp px-4">
+                                    <i class="fa-brands fa-whatsapp ps-3"></i>
+                                    Whatsapp
+                                </a>
                             </div>
                         </div>
                     </div>
                        {% endfor %}
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item mx-2">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </a>
+                          </li>
+                          <li class="page-item active mx-2"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item mx-2"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item mx-2">
+                            <a class="page-link" href="#">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
                 </div>  
+                <div class="up_arrow">
+                    <a href="#start"><i class="fa-solid fa-chevron-up"></i></a>
+                </div>
+                <div class="contact_icon">
+                    <i class="fa-regular fa-comment-dots fa-xl"></i>
+                </div>
+                <div class="msg1"><p class="text-dark">Contact Us</p></div>
           </section>
             <br>
             <br>
@@ -161,7 +244,7 @@
 
         <section>
 
-            <div class="container mt-4 mb-4">
+            <div class="container mt-4 mb-4 w-75">
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card1">
@@ -221,7 +304,7 @@
                     }
             </style>
             
-            <div class="container mt-4 mb-4">
+            <div class="container mt-4 mb-4 w-75">
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card1">
@@ -248,18 +331,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="view_all my-5">
+                    <a class="btn btn-outline-dark py-2" href="{% url 'news' %}">View all</a>
+                </div>
             </div>
               
                 <section class="latest_news">
-                    <div class="container">
+                    <div class="container w-75">
                         <h2 class="my-5">LATEST NEWS</h2>
                         <div class="row">
                             {% for news in news_items %}
                                 <div class="col-md-4 my-2">
-                                    <div class="card" style="width: 25rem;">
+                                    <div class="card h-100">
                                        <a href="{% url "detail_news" news.id %}">
                                         {% if news.photo %}
-                                        <img src="{{ news.photo.url }}" class="card-img-top"  alt="{{ news.title }}" style="height: 12rem;">
+                                        <img src="{{ news.photo.url }}" class="card-img-top"  alt="{{ news.title }}" height="200px">
                                         {% endif %}
                                        </a>
                                         <div class="card-body">
@@ -273,7 +359,9 @@
                                 {% endfor %}
                             </div>
 
-                            <a class="btn btn-outline-dark mx-auto" href="{% url 'news' %}">View all</a>
+                            <div class="view_all my-5">
+                                <a class="btn btn-outline-dark py-2" href="{% url 'news' %}">View all</a>
+                            </div>
                     </div>
                 </section>
                 
@@ -281,6 +369,15 @@
     
         <section>
             <style>
+                .view_all{
+                    display: grid;
+                    place-content: center;
+                }
+                .view_all a{
+                    width: 8rem;
+                    border-radius: 0%;
+
+                }
                 .full-screen-section {
                     height: 100vh;
                     display: flex;

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+    {% load humanize %}
+    <head>
+        <title>All Developer</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+       {% include "inc/nav.html" %}
+       <div class="container mt-5">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#emaar" type="button" role="tab" aria-controls="emaar" aria-selected="false">EMAAR</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#nakheel" type="button" role="tab" aria-controls="nakheel" aria-selected="false">NAKHEEL</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#meraas" type="button" role="tab" aria-controls="meraas" aria-selected="false">MERAAS</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#damac" type="button" role="tab" aria-controls="damac" aria-selected="false">DAMAC</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#sobha" type="button" role="tab" aria-controls="sobha" aria-selected="false">SOBHA</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+             <!-- all properties -->
+             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div class="row justify-content-center">
+                  {% for prop in property %}
+                  <div class="col-lg-4 col-md-6">
+                   <div class="card mb-4">
+                       {% if prop.is_off_plan %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                           OFF PLAN
+                       </div>
+                       {% endif %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                           {{prop.payment_plan}} PAYMENT PLAN
+                       </div>
+                       <a href="{% url 'property_detail' prop.id %}">
+                        <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                       </a>
+                       <div class="card-body">
+                           <p class="card-text">
+                             {{prop.category}}
+                               {% if prop.type %}
+                                   {{prop.type}}
+                               {% endif %}
+                           </p>
+                           <p class="card-text fw-bold">{{prop.company}}</p>
+                           <h3 class="card-text">{{prop.title}}</h3>
+                           <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
+                         
+                           <div class="d-flex justify-content-between button-gap mt-1">
+                               <a href="#" class="btn btn-dark">Call</a>
+                               <a href="#" class="btn btn-dark">Whatsapp</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+                  {% endfor %}
+               </div>
+              </div>
+             
+       
+           <div class="tab-pane fade" id="emaar" role="tabpanel" aria-labelledby="emaar-tab">
+            <!-- emaar -->
+            <div class="row justify-content-center">
+              {% for prop in emaar %}
+              <div class="col-lg-4 col-md-6">
+               <div class="card mb-4">
+                   {% if prop.is_off_plan %}
+                   <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                       OFF PLAN
+                   </div>
+                   {% endif %}
+                   <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                       {{prop.payment_plan}} PAYMENT PLAN
+                   </div>
+                   <a href="{% url 'property_detail' prop.id %}">
+                    <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                   </a>
+                   <div class="card-body">
+                       <p class="card-text">
+                         {{prop.category}}
+                           {% if prop.type %}
+                               {{prop.type}}
+                           {% endif %}
+                       </p>
+                       <p class="card-text fw-bold">{{prop.company}}</p>
+                       <h3 class="card-text">{{prop.title}}</h3>
+                       <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
+                     
+                       <div class="d-flex justify-content-between button-gap mt-1">
+                           <a href="#" class="btn btn-dark">Call</a>
+                           <a href="#" class="btn btn-dark">Whatsapp</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+              {% endfor %}
+          </div>
+
+          </div>
+    
+            <!-- Nakheel -->
+             <div class="tab-pane fade" id="nakheel" role="tabpanel" aria-labelledby="nakheel-tab">
+                <!-- nakheel -->
+                  <div class="row justify-content-center">
+                      
+                  {% for prop in nakheel %}
+                  <div class="col-lg-4 col-md-6">
+                   <div class="card mb-4">
+                       {% if prop.is_off_plan %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                           OFF PLAN
+                       </div>
+                       {% endif %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                           {{prop.payment_plan}} PAYMENT PLAN
+                       </div>
+                       <a href="{% url 'property_detail' prop.id %}">
+                        <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                       </a>
+                       <div class="card-body">
+                           <p class="card-text">
+                             {{prop.category}}
+                               {% if prop.type %}
+                                   {{prop.type}}
+                               {% endif %}
+                           </p>
+                           <p class="card-text fw-bold">{{prop.company}}</p>
+                           <h3 class="card-text">{{prop.title}}</h3>
+                           <h3 class="card-text">STARTING PRICE AED {{prop.price |intcomma}}</h3>
+                         
+                           <div class="d-flex justify-content-between button-gap mt-1">
+                               <a href="#" class="btn btn-dark">Call</a>
+                               <a href="#" class="btn btn-dark">Whatsapp</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+                  {% endfor %}
+               </div>
+             </div>
+
+             <!-- meraas -->
+           
+             <div class="tab-pane fade" id="meraas" role="tabpanel" aria-labelledby="meraas-tab">
+                
+              <div class="row justify-content-center">
+                {% for prop in meraas %}
+                <div class="col-lg-4 col-md-6">
+                 <div class="card mb-4">
+                     {% if prop.is_off_plan %}
+                     <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                         OFF PLAN
+                     </div>
+                     {% endif %}
+                     <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                         {{prop.payment_plan}} PAYMENT PLAN
+                     </div>
+                     <a href="{% url 'property_detail' prop.id %}">
+                      <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                     </a>
+                     <div class="card-body">
+                         <p class="card-text">
+                           {{prop.category}}
+                             {% if prop.type %}
+                                 {{prop.type}}
+                             {% endif %}
+                         </p>
+                         <p class="card-text fw-bold">{{prop.company}}</p>
+                         <h3 class="card-text">{{prop.title}}</h3>
+                         <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
+                       
+                         <div class="d-flex justify-content-between button-gap mt-1">
+                             <a href="#" class="btn btn-dark">Call</a>
+                             <a href="#" class="btn btn-dark">Whatsapp</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+                {% endfor %}
+             </div>
+             </div>
+
+             <!-- damac-->
+          
+            <div class="tab-pane fade" id="damac" role="tabpanel" aria-labelledby="damac">
+                <div class="row justify-content-center">
+                  {% for prop in damac %}
+                  <div class="col-lg-4 col-md-6">
+                   <div class="card mb-4">
+                       {% if prop.is_off_plan %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                           OFF PLAN
+                       </div>
+                       {% endif %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                           {{prop.payment_plan}} PAYMENT PLAN
+                       </div>
+                       <a href="{% url 'property_detail' prop.id %}">
+                        <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                       </a>
+                       <div class="card-body">
+                           <p class="card-text">
+                             {{prop.category}}
+                               {% if prop.type %}
+                                   {{prop.type}}
+                               {% endif %}
+                           </p>
+                           <p class="card-text fw-bold">{{prop.company}}</p>
+                           <h3 class="card-text">{{prop.title}}</h3>
+                           <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
+                         
+                           <div class="d-flex justify-content-between button-gap mt-1">
+                               <a href="#" class="btn btn-dark">Call</a>
+                               <a href="#" class="btn btn-dark">Whatsapp</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+                  {% endfor %}
+               </div>
+              </div>
+
+            <!-- sobha-->
+            
+            
+            <div class="tab-pane fade" id="sobha" role="tabpanel" aria-labelledby="sobha">
+                <div class="row justify-content-center">
+                  {% for prop in sobha %}
+                  <div class="col-lg-4 col-md-6">
+                   <div class="card mb-4">
+                       {% if prop.is_off_plan %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
+                           OFF PLAN
+                       </div>
+                       {% endif %}
+                       <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                           {{prop.payment_plan}} PAYMENT PLAN
+                       </div>
+                       <a href="{% url 'property_detail' prop.id %}">
+                        <img src="{{prop.image.url}}" class="card-img-top" alt="Logo">
+                       </a>
+                       <div class="card-body">
+                           <p class="card-text">
+                             {{prop.category}}
+                               {% if prop.type %}
+                                   {{prop.type}}
+                               {% endif %}
+                           </p>
+                           <p class="card-text fw-bold">{{prop.company}}</p>
+                           <h3 class="card-text">{{prop.title}}</h3>
+                           <h3 class="card-text">STARTING PRICE AED {{prop.price | intcomma}}</h3>
+                         
+                           <div class="d-flex justify-content-between button-gap mt-1">
+                               <a href="#" class="btn btn-dark">Call</a>
+                               <a href="#" class="btn btn-dark">Whatsapp</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+                  {% endfor %}
+               </div>
+              </div>
+            
+          </div>
+    </div>
+       
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

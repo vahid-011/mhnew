@@ -4,6 +4,15 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.db import models
 
+class Developer(models.Model):
+      name = models.CharField(max_length=200)
+      no_of_projects = models.IntegerField()
+      founded_year = models.IntegerField()
+      starting_price = models.IntegerField()
+      image=models.ImageField(upload_to='media/developer_images',null=True)
+      def __str__(self) -> str:
+            return self.name
+
 
 class Location(models.Model):
     options = (
@@ -26,6 +35,7 @@ class Properties(models.Model):
     price = models.IntegerField()
     place = models.CharField(max_length=200)
     image = models.ImageField(upload_to='property_images')
+    developer = models.ForeignKey(Developer,on_delete=models.CASCADE,related_name='property',null=True)
     options=(
         ('apartments','apartments'),
         ('villas','villas'),

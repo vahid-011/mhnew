@@ -3,10 +3,27 @@ from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
-from .models import News,Properties,Location,Image
+from .models import News,Properties,Location,Image,Developer
 from django.views.generic import ListView,DetailView
 
+class AllDeveloper(ListView):
+    template_name='all_developer.html'
+    queryset = Properties.objects.all()
+    context_object_name='property'
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        for i in Developer.objects.all():
+            context[i.name] = self.queryset.filter(developer=i)
+        print(context)
+        return context
 
+class DeveloperView(View):
+    def get(self,request,dev):
+        dev = Developer.objects.get(name=dev)
+        properties = Properties.objects.filter(developer=dev).order_by('-created_at')
+        return render(request,'developer.html',{'dev':dev,'properties':properties})
+    
+    
 class AllProperty(ListView):
     template_name='all_property.html'
     queryset = Properties.objects.all()

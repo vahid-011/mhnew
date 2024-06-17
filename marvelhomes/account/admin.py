@@ -2,13 +2,14 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import News,Properties,PropertyDetails,Location,PaymentDetails,Image
+from .models import News,Properties,PropertyDetails,Location,PaymentDetails,Image,Developer
 
 admin.site.register(PropertyDetails)
 admin.site.register(Properties)
 admin.site.register(Location)
 admin.site.register(PaymentDetails)
 admin.site.register(Image)
+admin.site.register(Developer)
 
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'updated_date', 'updated_time')

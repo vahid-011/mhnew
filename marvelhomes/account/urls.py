@@ -21,6 +21,7 @@ urlpatterns = [
      path('all_property/',AllProperty.as_view(), name='all_property'),
      path('developer/<dev>',DeveloperView.as_view(), name='dev'),
      path('all_developer/',AllDeveloper.as_view(), name='all_developer'),
+     path('get-a-free-report/',FreeReport.as_view(), name='free_report'),
     # path('news/<str:category>',views.news_list, name='news_list'),
     
 

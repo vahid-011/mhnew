@@ -22,6 +22,14 @@
         <section>
             {% include 'inc/nav.html' %}
             <div class="container my-5">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url '' %}" style="text-decoration: none; color: #000;">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        <a href="" style="text-decoration: none; color: #000;">NEWS</a>
+                    </li>
+                    </ol>
+                  </nav>
                 <div class="row">
                     {% if news_list %}
                         {% for news in news_list %}

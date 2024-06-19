@@ -112,8 +112,6 @@
                  </div>
                     {% endfor %}
                  </div>
-
-
                 </div>
                 <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
                   <div class="row justify-content-center">
@@ -151,9 +149,11 @@
                  </div>
                     {% endfor %}
                  </div>
-                <div class="tab-pane fade" id="townhouses" role="tabpanel" aria-labelledby="villa-townhouses">
+                </div>
+                <div class="tab-pane fade" id="townhouses" role="tabpanel" aria-labelledby="townhouses">
+                    <h1>hai</h1>
                   <div class="row justify-content-center">
-                    {% for prop in villas %}
+                    {% for prop in townhouses %}
                     <div class="col-lg-4 col-md-6">
                      <div class="card mb-4">
                          {% if prop.is_off_plan %}

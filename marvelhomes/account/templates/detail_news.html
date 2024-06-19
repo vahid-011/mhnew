@@ -16,17 +16,67 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <style>
+            .view_all{
+                display: grid;
+                place-content: center;
+            }
+            .view_all a{
+                width: 8rem;
+                border-radius: 0%;
+
+            }
+        </style>
     </head>
 
     <body>
         {% comment %} {% include 'inc/navbar.html' %} {% endcomment %}
+        {% include "inc/nav.html" %}
 
-       <div class="container my-5">
+       <div class="container my-5 w-75">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url '' %}" style="text-decoration: none; color: #000;">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a href="{% url "" %}" style="text-decoration: none; color: #000;">{{news.title}}</a>
+              </li>
+            </ol>
+          </nav>
         
-        <h1>{{news.title}}</h1>
+        <h3 class="text-dark my-3 ">{{news.title}}</h3>
+        
+        <img src="{{news.photo.url}}" alt="" class="img-fluid" style="height: 100vh;">
         <p>{{news.description}}</p>
-        <img src="{{news.photo.url}}" alt="" class="img-fluid">
+
+        <h3>You might also like</h3>
+        <div class="row">
+            {% if latest %}
+                {% for news in latest %}
+                <div class="col-md-4">
+                    <div class="card mb-2 overflow-hidden" style="height: 18rem;">
+                        {% if news.photo %}
+                            <img src="{{ news.photo.url }}" class="card-img img-fluid" alt="{{ news.title }}" style="width: 20rem;">
+                            {% endif %}
+                        <div class="card-img-overlay text-light">
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            <p class="card-text">{{ news.description }}</p>
+                            <p class="card-text">Updated: {{ news.updated_date }} {{ news.updated_time }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>No news items found.</p>
+                </div>
+            {% endif %}
+            <div class="view_all my-5">
+                <a class="btn btn-outline-dark py-2" href="{% url 'news' %}">View all</a>
+            </div>
+        </div>
+
        </div>
+       {% include "inc/footer.html" %}
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

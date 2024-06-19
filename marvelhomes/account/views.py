@@ -5,6 +5,31 @@ from django.views.generic import CreateView,FormView,TemplateView
 from django.views import View
 from .models import News,Properties,Location,Image,Developer
 from django.views.generic import ListView,DetailView
+from django.http import HttpResponse
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
+
+class FreeReport(View):
+    def get(self,request):
+        return render(request,'free_report.html')
+    def post(self,request):
+        print(request.POST)
+        data = {
+            'location':request.POST.get('location'),
+            'email':request.POST.get('email'),
+            'project_or_building':request.POST.get('project_or_building'),
+            'full_name':request.POST.get('full_name'),
+            'ph1':request.POST.get('phone_number'),
+            'ph2':request.POST.get('phone_number2'),
+        }
+        html_content = render_to_string('email_body_free_report.html', {'data': data})
+        print(request.POST)
+        email = EmailMessage(subject='Your Email Subject', body='', from_email='from@gmail.com', to=['to@gmail.com'])
+        email.content_subtype = 'html'  # Set content type to HTML
+        email.body = html_content
+        email.send()
+        return HttpResponse('Success')
 
 class AllDeveloper(ListView):
     template_name='all_developer.html'
@@ -14,7 +39,6 @@ class AllDeveloper(ListView):
         context = super().get_context_data(**kwargs)
         for i in Developer.objects.all():
             context[i.name] = self.queryset.filter(developer=i)
-        print(context)
         return context
 
 class DeveloperView(View):
@@ -66,7 +90,8 @@ class Category(ListView):
 
 def detail_news(request,id):
     news = News.objects.get(id=id)
-    return render(request,'detail_news.html',{"news":news})
+    latest_news= News.objects.all().order_by('-created_at')[:6]
+    return render(request,'detail_news.html',{"news":news,"latest":latest_news})
 
 def all_news(request):
     news = News.objects.all()

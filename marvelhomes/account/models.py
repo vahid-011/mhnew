@@ -116,6 +116,7 @@ class News(models.Model):
     updated_time = models.TimeField()
     updated_date = models.DateField()
     photo_count = models.PositiveSmallIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
 
     def save(self, *args, **kwargs):
         if self.photo and self.photo_count < 15:

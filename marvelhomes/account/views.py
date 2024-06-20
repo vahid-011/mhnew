@@ -9,7 +9,40 @@ from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-
+class about(View):
+    def get(self,request):
+        return render (request,"about.html")
+    def post(self,request):
+        print(request.POST)
+        data = {
+            'name':request.POST.get('name'),
+            'email':request.POST.get('email'),
+            'phone':request.POST.get('phone'),
+            'message':request.POST.get('message'),
+        }
+        html_content = render_to_string('email_about.html', {'data': data})
+        email = EmailMessage(subject='Message', body='', from_email='from@gmail.com', to=['to@gmail.com'])
+        email.content_subtype = 'html'  # Set content type to HTML
+        email.body = html_content
+        email.send()
+        return render(request,'success.html')
+class ForSellers(View):
+    def get(self,request):
+        return render (request,"forsellers.html")
+    def post(self,request):
+        data = {
+            'type':request.POST.get('inquiryType'),
+            'info':request.POST.get('information'),
+            'full_name':request.POST.get('full_name'),
+            'phone':request.POST.get('phone'),
+            'email':request.POST.get('email'),
+        }
+        html_content = render_to_string('email_forsellers.html', {'data': data})
+        email = EmailMessage(subject='Email ForSellers', body='', from_email='from@gmail.com', to=['to@gmail.com'])
+        email.content_subtype = 'html'  # Set content type to HTML
+        email.body = html_content
+        email.send()
+        return render(request,'success.html')
 class FreeReport(View):
     def get(self,request):
         return render(request,'free_report.html')
@@ -29,7 +62,7 @@ class FreeReport(View):
         email.content_subtype = 'html'  # Set content type to HTML
         email.body = html_content
         email.send()
-        return HttpResponse('Success')
+        return render(request,'success.html')
 
 class AllDeveloper(ListView):
     template_name='all_developer.html'
@@ -106,11 +139,6 @@ def mainpage(request):
 
 
 
-class about(View):
-    def get(self,request):
-        # print('about view called')
-       
-        return render (request,"about.html")
 class home(View):
     def get(self,request):
         return render (request,"mainpage.html")
@@ -120,11 +148,6 @@ class listing(View):
         # print('about view called')
        
         return render (request,"listing.html")
-class forsellers(View):
-    def get(self,request):
-        # print('about view called')
-       
-        return render (request,"forsellers.html")
 
 from django.shortcuts import render
 from .models import News

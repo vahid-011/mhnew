@@ -9,7 +9,7 @@ from django.conf import settings
 urlpatterns = [
     # path("about",about.as_view(),name="about"),
     path('about/', about.as_view(), name='about'),
-    path('forsellers/', forsellers.as_view(), name='forsellers'),
+    path('forsellers/', ForSellers.as_view(), name='forsellers'),
     path('home/',home.as_view(), name='home'),
     path('',listing.as_view(),name='listing'),
      path('news/',news_list, name='news_list'),

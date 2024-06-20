@@ -1,5 +1,3 @@
-
-
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -14,71 +12,277 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    
 </head>
 
 <body>
 
     {% include 'inc/navbar.html' %}
 
-<div class=" full-bg-image bg-dark about-bg-image" style="height: 150vh;">
+    <div class="full-bg-image text-white d-flex flex-column justify-content-center align-items-start p-5">
+        <h1>HOW MUCH IS MY HOUSE <br>WORTH?</h1>
+        <p>Our team of experts can help you sell your house. Get a free estimate on house value and learn more about selling your home.</p>
+    </div>
 
-    <h1>HOW MUCH IS MY HOUSE WORTH?​​</h1><br>
-    <p>Our team of experts can help you sell your house. Get a free estimate on house value and learn more about selling your home.</p>
-</div>
-<style>
-    /* CSS for full background image */
-    h1{
-        text-align: left;
-        font-size: 30px;
-        font-weight: 400;
-        text-transform: uppercase;
-        line-height: 1.5em;
-        letter-spacing: 5px;
-        margin-top: -100px;
-        margin-right: 20px;
-    }
-    p{
-        text-align: left;
-        margin-right: 900px;
-        margin-top: 300px;
-    }
-    body, html {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    .full-bg-image {
-        position: relative;
-        background-image: url("{% static 'images/forsell.png' %}");
-        height: 100vh;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-    }
-    /* Navbar styling */
-    .navbar-custom {
-        background-color: transparent;
-    }
-    .navbar-custom .container {
-        padding-top: 20px;
-    }
+    <style>
+        /* CSS for full background image */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.5em;
+            letter-spacing: 5px;
+            text-align: start;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left:-10px;
+            text-align: start;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .full-bg-image {
+            background-image: url("{% static 'images/forsell.png' %}");
+            height: 150vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+        }
+
+        /* Navbar styling */
+        .navbar-custom {
+            background-color: transparent;
+        }
+
+        .navbar-custom .container {
+            padding-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .full-bg-image {
+                height: auto;
+                clip-path: none;
+            }
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            p {
+                font-size: 1rem;
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+    </style>
+
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 650px;
+            margin-top:-700px;
+            position:absolute;
+            background-color: white;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+        .form-container .form-check-label {
+            margin-left: 25px;
+        }
+
+        .form-container .btn-submit {
+            background-color: #b0a171;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-container .btn-submit:hover {
+            background-color: #9c8d60;
+        }
+@media (max-width: 768px) {
+            .form-container {
+                margin: 20px auto;
+                margin-top: 20px;
+                position: static;
+                width: auto;
+            }
+        }
+    </style>
+
+    <div class="form-container">
+        <h2>GET YOUR HOME ESTIMATION</h2>
+        <form>
+            <div class="mb-3">
+                <label for="inquiryType" class="form-label">Inquiry Type <span class="text-danger">*</span></label>
+                <select class="form-select" name="inquiryType" id="inquiryType" required>
+                    <option value="" selected>Select</option>
+                    <option value="buy">Purchase</option>
+                    <option value="sell">Rent</option>
+                    <option value="rent">Sell</option>
+                    <option value="rent">Miss</option>
+                    <option value="rent">Evaluation</option>
+                    <option value="rent">Mortage</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="information" class="form-label">Information <span class="text-danger">*</span></label>
+                <select class="form-select" name="information" id="information" required>
+                    <option value="" selected>I'm a</option>
+                    <option value="owner">i'm a real estate agent</option>
+                    <option value="agent">i'm a property owner</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="full_name" class="form-control" id="fullName" placeholder="Full Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="tel" name="phone" class="form-control" id="mobileNumber" placeholder="Mobile Number" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="gdprAgreement" required>
+                <label class="form-check-label" for="gdprAgreement">I consent to having this website store my submitted information</label>
+            </div>
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
 
 
+    <section>
+        <div class="freereport">FREE REPORT</div>
+        <br>
+        <br>
+        <div class="freereporth1">Get a free property report for<br>
+            <br> local insights</div>
+    </section>
 
-</style>
-    
+    <style>
+        .freereport {
+            color: #A89D74;
+            text-align: center;
+            margin-top: 70px;
+            font-size: 14px;
+            line-height: 1.5rem;
+            letter-spacing: 5px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .freereporth1 {
+            text-align: center;
+            font-size: 30px;
+            line-height: 1.5rem;
+            letter-spacing: 5px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .freereporth1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+<section class="services-section py-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="service-box">
+                            <div class="icon mb-3">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </div>
+                            <h4 class="title">MARKET CONDITIONS</h4>
+                            <p class="description">Our analysts provide market trends to help you be the expert in your own home.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-box">
+                            <div class="icon mb-3">
+                                <i class="fas fa-home fa-3x"></i>
+                            </div>
+                            <h4 class="title">RECENTLY SOLD</h4>
+                            <p class="description">Find expert opinion on homes recently sold to help make decisions on your purchase.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-box">
+                            <div class="icon mb-3">
+                                <i class="fas fa-calendar-alt fa-3x"></i>
+                            </div>
+                            <h4 class="title">DAYS ON MARKET</h4>
+                            <p class="description">Compare your home to the average home and get the average days on market with our experts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+
+        .services-section {
+            background-color: #fff;
+        }
+        
+        .service-box {
+            padding: 20px;
+        }
+        
+        .service-box .icon {
+            color: #a89d74;
+        }
+        
+        .service-box .title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .service-box .description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        
+        
+    </style>
+   
+  
 </body>
+
+</html>
+{% include 'inc/footer.html' %}

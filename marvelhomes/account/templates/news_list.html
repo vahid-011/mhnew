@@ -16,12 +16,31 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            .up_arrow{
+                position: fixed;
+                right: 2rem;
+                bottom: 2rem;
+                height: 2.8rem;
+                width: 2.8rem;
+                background-color: #000;
+                display: grid;
+                place-content: center;
+            }
+            .up_arrow i {
+                color: white;
+            }
+        </style>
     </head>
 
     <body>
-        <section>
+        <section id="start">
             {% include 'inc/nav.html' %}
             <div class="container my-5">
+                <div class="up_arrow">
+                    <a href="#start"><i class="fa-solid fa-chevron-up"></i></a>
+                </div>
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="{% url '' %}" style="text-decoration: none; color: #000;">Home</a></li>
@@ -34,16 +53,20 @@
                     {% if news_list %}
                         {% for news in news_list %}
                         <div class="col-md-4">
-                            <div class="card mb-2 overflow-hidden" style="height: 18rem;">
-                                {% if news.photo %}
-                                    <img src="{{ news.photo.url }}" class="card-img img-fluid" alt="{{ news.title }}" style="width: 20rem;">
-                                    {% endif %}
-                                <div class="card-img-overlay text-light">
-                                    <h5 class="card-title">{{ news.title }}</h5>
-                                    <p class="card-text">{{ news.description }}</p>
-                                    <p class="card-text">Updated: {{ news.updated_date }} {{ news.updated_time }}</p>
+                            <a href="{% url "detail_news" news.id %}">
+                                <div class="card mb-2 overflow-hidden" style="height: 18rem;">
+                                    {% if news.photo %}
+                                        <img src="{{ news.photo.url }}" class="card-img" alt="{{ news.title }}" style="height: 100%;">
+                                        {% endif %}
+                                    <div class="card-img-overlay text-light" style="height: 2rem;padding-top: 8rem;">
+                                        <div class="d-flex card-text">
+                                            <p class="me-3"><i class="fa-regular fa-calendar"></i> {{news.updated_date}}</p>
+                                            <p><i class="fa-regular fa-clock"></i> {{news.updated_time}}</p>
+                                        </div>
+                                        <h5 class="card-title">{{ news.title }}</h5>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         {% endfor %}
                     {% else %}

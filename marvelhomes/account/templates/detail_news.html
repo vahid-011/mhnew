@@ -27,6 +27,7 @@
 
             }
         </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
     <body>
@@ -44,6 +45,26 @@
           </nav>
         
         <h3 class="text-dark my-3 ">{{news.title}}</h3>
+       <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <p class="me-3"><i class="fa-solid fa-calendar"></i> {{news.updated_date}}</p>
+            <p><i class="fa-regular fa-clock"></i> {{news.updated_time}}</p>
+        </div>
+        <div class="btn-group dropstart">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-share-nodes"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+               <li><a class="dropdown-item" href="#">Whatsapp</a></li>
+               <li><a class="dropdown-item" href="#">Meta</a></li>
+               <li><a class="dropdown-item" href="#">Twitter</a></li>
+               <li><a class="dropdown-item" href="#">Pinterest</a></li>
+               <li><a class="dropdown-item" href="#">Linkedin</a></li>
+               <li><a class="dropdown-item" href="#">Email</a></li>
+            </ul>
+        </div>
+       </div>
+
         
         <img src="{{news.photo.url}}" alt="" class="img-fluid" style="height: 100vh;">
         <p>{{news.description}}</p>
@@ -53,16 +74,20 @@
             {% if latest %}
                 {% for news in latest %}
                 <div class="col-md-4">
-                    <div class="card mb-2 overflow-hidden" style="height: 18rem;">
-                        {% if news.photo %}
-                            <img src="{{ news.photo.url }}" class="card-img img-fluid" alt="{{ news.title }}" style="width: 20rem;">
-                            {% endif %}
-                        <div class="card-img-overlay text-light">
-                            <h5 class="card-title">{{ news.title }}</h5>
-                            <p class="card-text">{{ news.description }}</p>
-                            <p class="card-text">Updated: {{ news.updated_date }} {{ news.updated_time }}</p>
+                    <a href="{% url "detail_news" news.id %}">
+                        <div class="card mb-2 overflow-hidden" style="height: 18rem;">
+                            {% if news.photo %}
+                                <img src="{{ news.photo.url }}" class="card-img" alt="{{ news.title }}" style="height: 100%;">
+                                {% endif %}
+                            <div class="card-img-overlay text-light" style="height: 2rem;padding-top: 8rem;">
+                                <div class="d-flex card-text">
+                                    <p class="me-3"><i class="fa-regular fa-calendar"></i> {{news.updated_date}}</p>
+                                    <p><i class="fa-regular fa-clock"></i> {{news.updated_time}}</p>
+                                </div>
+                                <h5 class="card-title">{{ news.title }}</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
             {% else %}

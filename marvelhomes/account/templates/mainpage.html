@@ -332,7 +332,7 @@
                     </div>
                 </div>
                 <div class="view_all my-5">
-                    <a class="btn btn-outline-dark py-2" href="{% url 'news' %}">View all</a>
+                    <a class="btn btn-outline-dark py-2" href="{% url 'all_property' %}">View all</a>
                 </div>
             </div>
               
@@ -349,9 +349,12 @@
                                         {% endif %}
                                        </a>
                                         <div class="card-body">
+                                            <div class="d-flex card-text">
+                                                <p class="me-3"><i class="fa-regular fa-calendar"></i> {{news.updated_date}}</p>
+                                                <p><i class="fa-solid fa-tag"></i></i> Real Estate</p>
+                                            </div>
                                             <h5 class="card-title">{{ news.title }}</h5>
                                             <p class="card-text">{{ news.description | slice:'0:100' }}...</p>
-                                            <p>Updated on: {{ news.updated_date }} at {{ news.updated_time }}</p>
                                             <a href="{% url 'detail_news' news.id %}" class="text-decoration-none text-dark"><p class="fw-bold">continue reading</p></a>
                                         </div>
                                     </div>

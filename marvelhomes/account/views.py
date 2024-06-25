@@ -71,7 +71,7 @@ class AllDeveloper(ListView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         for i in Developer.objects.all():
-            context[i.name] = self.queryset.filter(developer=i)
+            context[i.name] = self.queryset.filter(developer=i).order_by('-created_at')
         return context
 
 class DeveloperView(View):
@@ -83,7 +83,7 @@ class DeveloperView(View):
     
 class AllProperty(ListView):
     template_name='all_property.html'
-    queryset = Properties.objects.all()
+    queryset = Properties.objects.all().order_by('-created_at')
     context_object_name='property'
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -109,13 +109,13 @@ class PropertyDetails(DetailView):
 class PlaceView(View):
     def get(self,request,place):
         loc = Location.objects.get(place=place)
-        properties = Properties.objects.filter(location=loc)
+        properties = Properties.objects.filter(location=loc).order_by('-created_at')
         place_of_location = Location.objects.get(place = place)
         return render(request,'place.html',{'property':properties,'place':place_of_location})
 
 class Category(ListView):
     template_name='category_property.html'
-    queryset=Properties.objects.all()
+    queryset=Properties.objects.all().order_by('-created_at')
     context_object_name='property'
     def get_context_data(self, **kwargs):
         res = Properties.objects.filter(category=self.kwargs.get('category')) 
@@ -134,7 +134,17 @@ def all_news(request):
 def mainpage(request):
     properties = Properties.objects.all().order_by('-created_at')[:6]
     news_list=News.objects.all().order_by('-updated_date')[:6]
-    return render(request, 'mainpage.html',{'news_items':news_list,'properties':properties})
+    images = Image.objects.all()
+    im = {}
+    for i in range(len(properties)):
+        im[f'obj_{i}'] = images.filter(property=properties[i])
+    context={
+        'news_items':news_list,
+        'properties':properties,
+        }
+    context.update(im)
+    print(context)
+    return render(request, 'mainpage.html',context)
 
 
 

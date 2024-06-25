@@ -171,17 +171,97 @@
                        {% for prop in properties %}
                        <div class="col mb-5">
                         <div class="card h-100 mb-4">
-                            {% if prop.is_off_plan %}
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;">
-                                OFF PLAN
-                            </div>
-                            {% endif %}
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                                {{prop.payment_plan}} PAYMENT PLAN
-                            </div>
-                            <a href="{% url 'property_detail' prop.id %}">
-                                <img src="{{prop.image.url}}" class="card-img-top" alt="Logo" height="200px">
-                            </a>
+                            <div id="carouselExampleControls" class="carousel slide z-0" data-bs-ride="carousel" style="position: relative;">
+                                <div class="carousel-inner position-relative">
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 10rem;z-index: 10000;">
+                                        {{prop.status | upper}}
+                                    </div>
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem;z-index: 10000;">
+                                        {{prop.payment_plan}} PAYMENT PLAN
+                                    </div>
+                                  <div class="carousel-item active">
+                                    <a href="{% url 'property_detail' prop.id %}">
+                                        <img src="{{prop.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                    </a>
+                                  </div>
+                                  <div class="carousel-item">
+                                    <a href="{% url 'property_detail' prop.id %}">
+                                      {% if forloop.counter0  == 0 %}
+                                      {% if obj_0.0.image %}
+                                      <img src="{{obj_0.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 1 %}
+                                      {% if obj_1.0.image %}
+                                      <img src="{{obj_1.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 2 %}
+                                      {% if obj_2.0.image %}
+                                      <img src="{{obj_2.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 3 %}
+                                      {% if obj_3.0.image %}
+                                      <img src="{{obj_3.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 4 %}
+                                      {% if obj_4.0.image %}
+                                      <img src="{{obj_4.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 5 %}
+                                      {% if obj_5.0.image %}
+                                      <img src="{{obj_5.0.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                    </a>
+                                  </div>
+                                  <div class="carousel-item">
+                                    <a href="{% url 'property_detail' prop.id %}">
+                                        {% if forloop.counter0  == 0 %}
+                                        {% if obj_0.1.image %}
+                                        <img src="{{obj_0.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                        {% endif %}
+                                        {% endif %}
+                                      {% if forloop.counter0  == 1 %}
+                                      {% if obj_1.1.image %}
+                                      <img src="{{obj_1.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 2 %}
+                                      {% if obj_2.1.image %}
+                                      <img src="{{obj_2.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 3 %}
+                                      {% if obj_3.1.image %}
+                                      <img src="{{obj_3.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter0  == 4 %}
+                                      {% if obj_4.1.image %}
+                                      <img src="{{obj_4.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                      {% if forloop.counter5  == 5 %}
+                                      {% if obj_5.1.image %}
+                                      <img src="{{obj_5.1.image.url}}" class="card-img-top" alt="Logo" height="200px">
+                                      {% endif %}
+                                      {% endif %}
+                                    </a>
+                                  </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div>
                             <div class="card-body">
                                 <p class="card-text mb-1">{{prop.category}}
                                     {% if prop.type %}

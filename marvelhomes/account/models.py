@@ -47,7 +47,13 @@ class Properties(models.Model):
     )
     company = models.CharField(max_length=100,null=True)
     type = models.CharField(max_length=100,choices=types,null=True,default='')
-    is_off_plan = models.BooleanField(default=False)
+    statuses = (
+          ('completed','completed'),
+          ('off plan','off plan'),
+          ('ready','ready'),
+          ('under construction','under construction'),
+    )
+    status = models.CharField(max_length=100,choices=statuses,null=True)
     payment_plan = models.CharField(max_length=100)
     category = models.CharField(max_length=100,choices = options)
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)

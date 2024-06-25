@@ -58,10 +58,8 @@
                     <h3>{{property.title}}</h3>
                     <div class="d-flex justify-content-evenly">
                         <p>Featured</p>
-                        {% if property.is_off_plan %}
-                        <p><span class="badge bg-secondary">OFF PLAN</span></p>
-                        {% endif %}
-                        <p><span class="badge bg-secondary">{{property.payment_plan}} PAYMENT PLAN</span></p>
+                        <p><span class="badge bg-secondary" style="font-style: normal;">{{prop.status | upper}}</span></p>             
+                        <p><span class="badge bg-secondary" style="font-style: normal;">{{property.payment_plan}} PAYMENT PLAN</span></p>
                     </div>
                 </div>
 
@@ -85,13 +83,13 @@
             </div>
             <img src="{{property.image.url}}" alt="" class="img-fluid">
             
-            {% if image %}
             <div class="d-flex justify-content-evenly" style="height: 10rem;">
                 {% for im in image %}
+                {% if im.image %}
                 <img src="{{im.image.url}}" alt="" class="img-fluid">
+                {% endif %}
                 {% endfor %}
-            </div>
-            {% endif %}
+               </div>
 
             <div class="border border-3 w-75 mt-3 p-4" style="height: 10rem;">
                 <h3>Overview</h3>

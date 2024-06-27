@@ -127,7 +127,7 @@ def detail_news(request,id):
     return render(request,'detail_news.html',{"news":news,"latest":latest_news})
 
 def all_news(request):
-    news = News.objects.all()
+    news = News.objects.all().order_by('-created_at')
     return render(request,'news_list.html',{"news_list":news})
 
 
@@ -177,5 +177,5 @@ from django.shortcuts import render
 from .models import News
 
 def news_list(request):
-    news_items = News.objects.all()
+    news_items = News.objects.all().order_by('-created_at')
     return render(request, 'mainpage.html', {'news_items': news_items})

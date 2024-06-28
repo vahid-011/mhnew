@@ -81,7 +81,26 @@
                     <h3 class="fw-bold">{{property.company}}</h3>
                 </div>
             </div>
-            <img src="{{property.image.url}}" alt="" class="img-fluid">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{{property.image.url}}" alt="" class="img-fluid w-100" style="height: 60rem;">
+                  </div>
+                  {% for im in image %}
+                  <div class="carousel-item">
+                    <img src="{{im.image.url}}" alt="" class="img-fluid w-100" style="height: 60rem;">
+                  </div>
+                  {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
             
             <div class="d-flex justify-content-evenly" style="height: 10rem;">
                 {% for im in image %}
@@ -151,25 +170,17 @@
                 </div>
             </div>
 
-            {% if property.payment_details %}
                 <h3>payment details</h3>
                 <div class="row">
-                    <div class="col-3">
-                        <p class="fw-bold">On booking</p>
-                        <p class="fw-bold">During construction</p>
+                   {% for p in payment %}
+                   <div class="col-3">
+                    <p class="fw-bold">{{p.title}}</p>
                     </div>
-                    <div class="col-3">
-                        <p>{{property.payment_details.on_booking}}</p>
-                        <p>{{property.payment_details.during_construction}}</p>
+                   <div class="col-3">
+                    <p class="">{{p.value}}</p>
                     </div>
-                    <div class="col-3">
-                        <p class="fw-bold">Upon handover</p>
-                    </div>
-                    <div class="col-3">
-                        <p>{{property.payment_details.upon_handover}}</p>
-                    </div>
+                   {% endfor %}
                 </div>
-            {% endif %}
 
            </div>
             

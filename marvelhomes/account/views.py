@@ -3,11 +3,12 @@ from django.shortcuts import render
 from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
 from django.views import View
-from .models import News,Properties,Location,Image,Developer
+from .models import News,Properties,Location,Image,Developer,PaymentDetails
 from django.views.generic import ListView,DetailView
 from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+
 
 class about(View):
     def get(self,request):
@@ -87,9 +88,9 @@ class AllProperty(ListView):
     context_object_name='property'
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["apartment"] = self.queryset.filter(category='apartments')
-        context["villas"] = self.queryset.filter(category='villas')
-        context["townhouses"] = self.queryset.filter(category='townhouses')
+        context["apartment"] = self.queryset.filter(category='apartments').order_by('-created_at')
+        context["villas"] = self.queryset.filter(category='villas').order_by('-created_at')
+        context["townhouses"] = self.queryset.filter(category='townhouses').order_by('-created_at')
         return context
     
     
@@ -101,8 +102,10 @@ class PropertyDetails(DetailView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context =  super().get_context_data(**kwargs)
         property = Properties.objects.get(id=self.kwargs.get('pid'))
-        image = Image.objects.filter(property = property)
+        payment = PaymentDetails.objects.filter(property=property).order_by('created_at')
+        image = Image.objects.filter(property = property).order_by('-created_at')
         context['image'] = image
+        context['payment'] = payment
         return context
     
 

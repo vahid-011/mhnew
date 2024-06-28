@@ -80,10 +80,10 @@ def create_image(sender, instance, created, **kwargs):
 post_save.connect(create_image, sender=Properties)
 
 class PaymentDetails(models.Model):
-    on_booking = models.CharField(max_length=100,null=True)
-    during_construction = models.CharField(max_length=100,null=True)
-    upon_handover = models.CharField(max_length=100,null=True)
-    property = models.OneToOneField(Properties,on_delete=models.CASCADE,related_name='payment_details',null=True)
+    title = models.CharField(max_length=200,null=True)
+    value = models.CharField(max_length=200,null=True)
+    property = models.ForeignKey(Properties,on_delete=models.CASCADE,related_name='payment_details',null=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self) -> str:
          return self.property.title
     
